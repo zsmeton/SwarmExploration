@@ -1,0 +1,26 @@
+<package>
+  <name>distributed_localization</name>
+  <version>0.0.0</version>
+  <description>TODO</description>
+  <author>TODO</author>
+  <maintainer email="todo.todo@todo.com">TODO</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>map_server</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  
+
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>roscpp</run_depend>
+
+
+  <export>
+  </export>
+</package>
+
