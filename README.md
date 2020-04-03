@@ -7,6 +7,10 @@ Hayden Sathers, Josh Rands, David Western, Shneka Muth Kumara Swamy, Zachary Sme
 ## Description
 TODO
 
+## Dependencies/Versions
+- ROS: Kinetic-Kame (Full Desktop Edition)
+- ros-kinetic-openslam-gmapping
+
 ## Results
 TODO
 
