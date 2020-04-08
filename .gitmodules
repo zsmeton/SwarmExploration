@@ -10,3 +10,6 @@
 [submodule "ros/catkin_ws/src/slam_gmapping"]
 	path = ros/catkin_ws/src/slam_gmapping
 	url = https://github.com/ros-perception/slam_gmapping.git
+[submodule "ros/catkin_ws/src/relative_pos"]
+	path = ros/catkin_ws/src/relative_pos
+	url = https://github.com/joshrands/relative_pos.git
