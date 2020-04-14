@@ -9,6 +9,7 @@ TODO
 
 ## Dependencies/Versions
 - ROS: Kinetic-Kame (Full Desktop Edition)
+- ros-kinetic-map-server
 - ros-kinetic-openslam-gmapping
 
 ## Results
