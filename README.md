@@ -18,6 +18,8 @@ TODO
 - libopenni2-dev
 - ros-kinetic-move-base
 - python-vtk
+- ros-kinetic-pcl-conversions
+- ros-kinetic-pcl-ros
 
 ## Results
 TODO
