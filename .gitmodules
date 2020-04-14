@@ -13,3 +13,6 @@
 [submodule "ros/catkin_ws/src/relative_pos"]
 	path = ros/catkin_ws/src/relative_pos
 	url = https://github.com/joshrands/relative_pos.git
+[submodule "ros/catkin_ws/src/navigation"]
+	path = ros/catkin_ws/src/navigation
+	url = https://github.com/ros-planning/navigation.git
