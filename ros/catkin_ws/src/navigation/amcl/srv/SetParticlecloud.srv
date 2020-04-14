@@ -1,0 +1,3 @@
+amcl_msgs/WeightedParticlecloud cloud
+---
+bool success
