@@ -1,1 +1,2 @@
-This folder has the Gazebo models for individual markers
+Howdy partner! Hang on to your saddle, the semester is almost over. There is a folder called aruco_cube_1 that has the files needed for spawning a cube of aruco markers in Gazebo. Starting from the x-axis and going clockwise, the aruco markers are numbered 11, 12, 13, and 14.
+Now gather up your six-shooter, lasso, and can of beans, we got a project to wranlge or we'll be in a peck of trouble!
