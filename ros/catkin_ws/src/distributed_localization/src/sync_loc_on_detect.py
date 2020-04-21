@@ -7,7 +7,7 @@ import rospy
 from std_msgs.msg import String
 from amcl_msgs.msg import *
 from amcl.srv import GetParticlecloud
-from geometry_msgs.msg import PoseArray
+from geometry_msgs.msg import PoseArray, Pose2D
 import argparse
 
 # map of robot names to current localization data 
@@ -37,17 +37,42 @@ def particlecloud_callback(particlecloud,robot_name):
     print(robot_name)
 
 
+def relative_pose_callback(relative_pose,bot_names_tuple):
+    """
+    Callback function for relative pose topics 
+    """
+    print(relative_pose)
+    print("Robot " + bot_names_tuple[0] + " observed robot " + bot_names_tuple[1])
+
+
 def run_sync(num_bots):
+    """
+    Run the localization synchronization node
+    """
+    global current_loc_data
+    global current_relative_pose_data
+
     rospy.init_node('sync_loc', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
     # set up callbacks for localization data 
     for i in range(0, num_bots):
         bot_name = "tb3_" + str(i)
+        # create a key for this robot in the global maps 
+        current_loc_data[bot_name] = None 
+        # equals a map of other robot names with relative pose data
+        current_relative_pose_data[bot_name] = {}
+
         bot_loc_topic = "/" + bot_name + "/particlecloud"
         sub = rospy.Subscriber(bot_loc_topic, PoseArray, particlecloud_callback, callback_args=bot_name) 
 
     # set up callbacks for relative position data
+    for bot_name in current_relative_pose_data.keys():
+        for other_bot_name in current_relative_pose_data.keys():
+            if other_bot_name != bot_name:
+                topic_name = "/" + bot_name + "/" + other_bot_name + "/relative_pose"                
+                current_relative_pose_data[bot_name][other_bot_name] = None
+                sub = rospy.Subscriber(topic_name, Pose2D, relative_pose_callback, callback_args=(bot_name,other_bot_name))
 
     while not rospy.is_shutdown():
         rate.sleep()
