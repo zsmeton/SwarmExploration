@@ -1,0 +1,10 @@
+<launch>
+  <!-- Arguments -->
+
+  <!-- Map Server Launch -->
+  <include file="$(find distributed_localization)/launch/map_server.launch" />
+  <!-- Multirobot Launch -->
+  <include file="$(find distributed_localization)/launch/multi_turtlebot3.launch" />
+  <!-- AMCL Launch -->
+  <include file="$(find distributed_localization)/launch/amcl.launch" />
+</launch>
