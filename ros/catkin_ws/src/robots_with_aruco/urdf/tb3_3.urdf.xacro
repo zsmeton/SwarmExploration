@@ -5,17 +5,17 @@
   <xacro:property name="cube_x_offset" value="-0.1" />
   <xacro:property name="cube_z_offset" value="0.2" />
   <xacro:property name="cube_length" value="0.1" />
-  <xacro:property name="front_tag" value="11" />
-  <xacro:property name="right_tag" value="12" />
-  <xacro:property name="back_tag" value="13" />
-  <xacro:property name="left_tag" value="14" />
+  <xacro:property name="front_tag" value="31" />
+  <xacro:property name="right_tag" value="32" />
+  <xacro:property name="back_tag" value="33" />
+  <xacro:property name="left_tag" value="34" />
   <xacro:property name="artag_offset" value="${cube_length/2+0.001}" />
   <link name="base_footprint"/>
 
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link" />
-    <origin xyz="0 0 0.010" rpy="0 0 0"/>
+    <origin xyz="0 0 0.010" rpy="0 0 3.14159"/>
   </joint>
 
   <link name="base_link">
