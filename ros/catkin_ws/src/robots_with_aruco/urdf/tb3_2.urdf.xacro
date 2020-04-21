@@ -5,10 +5,10 @@
   <xacro:property name="cube_x_offset" value="-0.1" />
   <xacro:property name="cube_z_offset" value="0.2" />
   <xacro:property name="cube_length" value="0.1" />
-  <xacro:property name="front_tag" value="11" />
-  <xacro:property name="right_tag" value="12" />
-  <xacro:property name="back_tag" value="13" />
-  <xacro:property name="left_tag" value="14" />
+  <xacro:property name="front_tag" value="21" />
+  <xacro:property name="right_tag" value="22" />
+  <xacro:property name="back_tag" value="23" />
+  <xacro:property name="left_tag" value="24" />
   <xacro:property name="artag_offset" value="${cube_length/2+0.001}" />
   <link name="base_footprint"/>
 
@@ -238,17 +238,17 @@
         </visual>
     </link>
 
-   <link name="artag_${front_tag}">
+   <link name="artag_21">
       <visual>
         <geometry>
-            <mesh filename="package://robots_with_aruco/meshes/artag_${front_tag}.dae"/>
+            <mesh filename="package://robots_with_aruco/meshes/artag_21.dae"/>
         </geometry>
       </visual>
     </link>
 
-   <joint name="base_to_tag${front_tag}" type="fixed">
+   <joint name="base_to_tag21" type="fixed">
       <parent link="base_cube"/>
-      <child link="artag_${front_tag}"/>
+      <child link="artag_21"/>
       <origin xyz = "${artag_offset} 0 0" rpy = "-1.57079633 0 -1.57079633"/>
     </joint>
 
