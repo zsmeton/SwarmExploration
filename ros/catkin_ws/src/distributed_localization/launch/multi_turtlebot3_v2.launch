@@ -29,7 +29,7 @@
   </include>  
 
   <group ns = "$(arg first_tb3)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robots_wth_aruco)/urdf/$(arg first_tb3).urdf.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robots_with_aruco)/urdf/$(arg first_tb3).urdf.xacro" />
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="50.0" />
@@ -43,7 +43,7 @@
 
 
   <group ns = "$(arg second_tb3)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robots_wth_aruco)/urdf/$(arg second_tb3).urdf.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robots_with_aruco)/urdf/$(arg second_tb3).urdf.xacro" />
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="50.0" />
@@ -57,7 +57,7 @@
 
 
   <group ns = "$(arg third_tb3)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robots_wth_aruco)/urdf/third_tb3.urdf.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robots_with_aruco)/urdf/$(arg third_tb3).urdf.xacro" />
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="50.0" />
