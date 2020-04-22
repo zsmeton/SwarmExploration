@@ -18,6 +18,7 @@
   <run_depend>nav_msgs</run_depend>
   <run_depend>map_server</run_depend>
   <run_depend>roscpp</run_depend>
+  <run_depend>robots_with_aruco</run_depend>
   <run_depend>rospy</run_depend>
 
 
