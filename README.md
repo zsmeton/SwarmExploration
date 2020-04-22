@@ -8,18 +8,29 @@ Hayden Sathers, Josh Rands, David Western, Shneka Muth Kumara Swamy, Zachary Sme
 TODO
 
 ## Dependencies/Versions
+ROS (apt):
 - ROS: Kinetic-Kame (Full Desktop Edition)
 - ros-kinetic-map-server
 - ros-kinetic-openslam-gmapping
+- ros-kinetic-bfl
+- ros-kinetic-move-base
+- ros-kinetic-pcl-conversions
+- ros-kinetic-pcl-ros
+  
+Other (apt):
 - libbullet-dev
 - libsdl-image1.2-dev
 - libsdl-dev
-- ros-kinetic-bfl
 - libopenni2-dev
-- ros-kinetic-move-base
 - python-vtk
-- ros-kinetic-pcl-conversions
-- ros-kinetic-pcl-ros
+- python-scipy
+- python-sklearn
+
+Python (pip):
+- numpy
+- matplotlib
+- sklearn
+- scipy
 
 ## Results
 TODO

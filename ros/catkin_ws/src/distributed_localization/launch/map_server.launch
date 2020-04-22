@@ -3,5 +3,5 @@
     <arg name="map" default="$(find distributed_localization)/maps/map.yaml"/>
     
     <!-- Map Server -->
-    <node pkg="map_server" type="map_server" name="distributed_map_server" required="true" args="$(arg map)"/>
+    <node pkg="map_server" type="map_server" name="map_server" required="true" args="$(arg map)"/>
 </launch>
