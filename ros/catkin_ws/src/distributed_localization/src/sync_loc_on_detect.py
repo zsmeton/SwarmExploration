@@ -8,17 +8,35 @@ import rospy
 from std_msgs.msg import String
 from amcl_msgs.msg import *
 from amcl.srv import GetParticlecloud
-from geometry_msgs.msg import PoseArray, Pose2D
+from geometry_msgs.msg import PoseArray, Pose2D, PoseWithCovarianceStamped
 import argparse
+
+### GLOBAL VARIABLES ### 
+X_VARIANCE = 0.01 # meters^2
+Y_VARIANCE = 0.01 # meters^2
+THETA_VARIANCE = 25 # degrees^2
 
 # map of robot names to current localization data 
 current_loc_data = {
+
+}
+# map of robot names to current particle cloud data 
+current_particle_cloud_data = {
 
 }
 # map of current relative position data 
 current_relative_pose_data = {
 
 }
+
+
+def get_probability_from_detection(pose_n, pose_m, detection_m):
+    """
+    Get the probability of robot n in pose_n given robot m is pose_m and
+    robot n detected robot m with detection_m
+    """
+    pass
+
 
 def sync_loc_data(robot_n, robot_m):
     """
@@ -32,10 +50,10 @@ def sync_loc_data(robot_n, robot_m):
 
     # use global variables for current data 
     # TODO: SIMULATE SOME SORT OF COMMS HERE FOR "SHARING" OF DATA
-    robot_n_particlecloud = current_loc_data[robot_n]
-    robot_m_particlecloud = current_loc_data[robot_m]
+    robot_n_loc = current_loc_data[robot_n]
+    robot_m_loc = current_loc_data[robot_m]
 
-    if None == robot_n_particlecloud or None == robot_m_particlecloud:
+    if None == robot_n_loc or None == robot_m_loc:
         rospy.logwarn("Cannot sync particlecloud data for " + robot_n + " and " + robot_m + ": Particle cloud is None")
         return 
 
@@ -46,14 +64,23 @@ def sync_loc_data(robot_n, robot_m):
     # TODO: Sync localization data! 
 
 
+def amcl_pose_callback(amcl_pose,robot_name):
+    """
+    Callback function for amcl pose topics
+    """
+    global current_loc_data
+
+    current_loc_data[robot_name] = amcl_pose
+
+
 def particlecloud_callback(particlecloud,robot_name):
     """
     Callback function for particlecloud topics
     """
-    global current_loc_data
+    global current_particle_cloud_data
 
     # update the global current location particle data of this robot 
-    current_loc_data[robot_name] = particlecloud.poses
+    current_particle_cloud_data[robot_name] = particlecloud.poses
 
 
 def relative_pose_callback(relative_pose,bot_names_tuple):
@@ -93,8 +120,10 @@ def run_sync(num_bots):
         # equals a map of other robot names with relative pose data
         current_relative_pose_data[bot_name] = {}
 
-        bot_loc_topic = "/" + bot_name + "/particlecloud"
-        sub = rospy.Subscriber(bot_loc_topic, PoseArray, particlecloud_callback, callback_args=bot_name) 
+        bot_pc_topic = "/" + bot_name + "/particlecloud"
+        sub = rospy.Subscriber(bot_pc_topic, PoseArray, particlecloud_callback, callback_args=bot_name) 
+        bot_amcl_topic = "/" + bot_name + "/amcl_pose"
+        sub = rospy.Subscriber(bot_amcl_topic, PoseWithCovarianceStamped, amcl_pose_callback, callback_args=bot_name) 
 
     # set up callbacks for relative position data
     for bot_name in current_relative_pose_data.keys():
