@@ -189,17 +189,18 @@ def run_sync(num_bots,index):
 if __name__ == '__main__':
     try:
         # process command line arguments
-        ap = argparse.ArgumentParser()
-        ap.add_argument("-n", "--num", default=3,
-            help="The number of robots in this simulation")
-        ap.add_argument("-i", "--index", default=1,
-            help="The starting index for robot topic names") 
-        ap.add_argument("-v", "--verbose", default=False,
-            help="Run in verbose mode")
-        args = vars(ap.parse_args())
+#        ap = argparse.ArgumentParser()
+#        ap.add_argument("-n", "--num", default=3,
+#            help="The number of robots in this simulation")
+#        ap.add_argument("-i", "--index", default=1,
+#            help="The starting index for robot topic names") 
+#        ap.add_argument("-v", "--verbose", default=False,
+#            help="Run in verbose mode")
+#        args = vars(ap.parse_args())
 
-        VERBOSE = args["verbose"]
+#        VERBOSE = args["verbose"]
 
-        run_sync(args["num"],args["index"])
+#        run_sync(args["num"],args["index"])
+        run_sync(3, 1)
     except rospy.ROSInterruptException:
         pass
