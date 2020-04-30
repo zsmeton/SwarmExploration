@@ -9,4 +9,6 @@
   <include file="$(find distributed_localization)/launch/amcl.launch" />
   <!-- Distributed Synchronization -->
   <node name="sync_loc_on_detect" pkg="distributed_localization" type="sync_loc_on_detect.py" /> 
+  <!-- RVIZ -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find distributed_localization)/rviz/localization.rviz"/>
 </launch>

@@ -8,19 +8,8 @@
   <arg name="initial_cov_yy" default="8.0"/>
   <arg name="initial_cov_aa" default="6.0"/>
 
-  <arg name="first_tb3_pose_x" default="0.0"/>
-  <arg name="first_tb3_pose_y" default="0.0"/>
-  <arg name="first_tb3_pose_a" default="0.0"/>
   <arg name="first_tb3_scan"   default="scan"/>
-
-  <arg name="second_tb3_pose_x" default="0.0"/>
-  <arg name="second_tb3_pose_y" default="0.0"/>
-  <arg name="second_tb3_pose_a" default="0.0"/>
   <arg name="second_tb3_scan"   default="scan"/>
-
-  <arg name="third_tb3_pose_x" default="0.0"/>
-  <arg name="third_tb3_pose_y" default="0.0"/>
-  <arg name="third_tb3_pose_a" default="0.0"/>
   <arg name="third_tb3_scan"   default="scan"/>
 
   <!-- AMCL -->
@@ -35,9 +24,6 @@
         <param name="transform_tolerance"       value="0.5"/>
         <param name="recovery_alpha_slow"       value="0.00"/>
         <param name="recovery_alpha_fast"       value="0.00"/>
-        <param name="initial_pose_x"            value="$(arg first_tb3_pose_x)"/>
-        <param name="initial_pose_y"            value="$(arg first_tb3_pose_y)"/>
-        <param name="initial_pose_a"            value="$(arg first_tb3_pose_a)"/>
         <param name="initial_cov_xx"            value="$(arg initial_cov_xx)"/>
         <param name="initial_cov_yy"            value="$(arg initial_cov_yy)"/>
         <param name="initial_cov_aa"            value="$(arg initial_cov_aa)"/>
@@ -77,9 +63,6 @@
         <param name="transform_tolerance"       value="0.5"/>
         <param name="recovery_alpha_slow"       value="0.00"/>
         <param name="recovery_alpha_fast"       value="0.00"/>
-        <param name="initial_pose_x"            value="$(arg second_tb3_pose_x)"/>
-        <param name="initial_pose_y"            value="$(arg second_tb3_pose_y)"/>
-        <param name="initial_pose_a"            value="$(arg second_tb3_pose_a)"/>
         <param name="initial_cov_xx"            value="$(arg initial_cov_xx)"/>
         <param name="initial_cov_yy"            value="$(arg initial_cov_yy)"/>
         <param name="initial_cov_aa"            value="$(arg initial_cov_aa)"/>
@@ -119,9 +102,6 @@
         <param name="transform_tolerance"       value="0.5"/>
         <param name="recovery_alpha_slow"       value="0.00"/>
         <param name="recovery_alpha_fast"       value="0.00"/>
-        <param name="initial_pose_x"            value="$(arg third_tb3_pose_x)"/>
-        <param name="initial_pose_y"            value="$(arg third_tb3_pose_y)"/>
-        <param name="initial_pose_a"            value="$(arg third_tb3_pose_a)"/>
         <param name="initial_cov_xx"            value="$(arg initial_cov_xx)"/>
         <param name="initial_cov_yy"            value="$(arg initial_cov_yy)"/>
         <param name="initial_cov_aa"            value="$(arg initial_cov_aa)"/>
