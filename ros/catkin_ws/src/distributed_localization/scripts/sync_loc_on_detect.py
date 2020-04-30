@@ -43,47 +43,6 @@ current_relative_pose_data = {
 
 }
 
-class DetectionProb:
-    def __init__(self, domains, means, variances):
-        if not(np.array(domains).shape == np.array(means).shape and np.array(domains).shape == np.array(variances).shape):
-            raise ValueError("domains, means, and variances must have the same shape")
-        
-        # Create model
-        cov=[]
-        for i, variance in enumerate(variances):
-            z = np.zeros(len(variances))
-            z[i] = variance
-            cov.append(z)
-        print(cov)
-        self.rv = multivariate_normal(means, cov)
-
-    def eval(self, x):
-        return self.rv.pdf(x)
-
-
-def get_probability_from_detection(pose_n, pose_m, detection_m):
-    """
-    Get the probability of robot n in pose_n given robot m is pose_m and
-    robot n detected robot m with detection_m using the detection model detection_model
-    """
-    detection_model = DetectionProb([X_DOMAIN, Y_DOMAIN, THETA_DOMAIN], [0,0,0], [X_VARIANCE, Y_VARIANCE, THETA_VARIANCE])
-    # Get the relative position of robot m from robot n using pose data
-    pose_r = pose_m - pose_n
-    # Get the difference between pose_r and detection_m
-    diff = pose_r - detection_m
-    # Get probability
-    p = detection_model.eval(diff)
-    print "Pose_r", pose_r, "Diff", diff, "P(Ln|Lm,Rm)=", p
-    return p
-
-
-def update_particle_cloud(robot_n, robot_m, detection_m):
-    weights_n = 0
-    weight_m = 0
-    pose2D_n = 0
-    pose2D_m = 0
-    pass
-
 
 def sync_loc_data(robot_n, robot_m):
     """
@@ -128,9 +87,6 @@ def sync_loc_data(robot_n, robot_m):
 
     global_pose_topic[robot_n][robot_m].publish(robot_m_estimated_pose)
 
-    # Run probability for particle_cloud
-    update_particle_cloud(robot_n, robot_m, n_detect_m)
-
 
 def amcl_pose_callback(amcl_pose,robot_name):
     """
@@ -148,7 +104,7 @@ def particlecloud_callback(particlecloud,robot_name):
     global current_particle_cloud_data
 
     # update the global current location particle data of this robot 
-    current_particle_cloud_data[robot_name] = particlecloud
+    current_particle_cloud_data[robot_name] = particlecloud.poses
 
 
 def relative_pose_callback(relative_pose,bot_names_tuple):

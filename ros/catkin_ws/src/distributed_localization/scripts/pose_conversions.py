@@ -1,6 +1,7 @@
 from geometry_msgs.msg import PoseArray, Pose2D, PoseWithCovarianceStamped
 import tf.transformations
 import math
+import numpy as np
 
 def pose_to_pose2d_rad(pose):
     """
@@ -41,4 +42,10 @@ def pose2d_degree_to_pose2d_rad(pose):
     """
     Turns pose2d with degree yaw to pose2d with radian yaw
     """
-    return Pose2D(pose.x, pose.y, pose.theta/math.pi * 180.0)
+    return Pose2D(pose.x, pose.y, pose.theta / math.pi * 180.0)
+    
+def pose2d_to_numpy(pose):
+    """
+    Turns a pose2d into a numpy array [x,y,theta]
+    """
+    return np.array([pose.x, pose.y, pose.theta])

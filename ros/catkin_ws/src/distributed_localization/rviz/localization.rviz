@@ -6,6 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Robot-21
+        - /Robot-21/Pose-21
+        - /Robot-31
       Splitter Ratio: 0.5
     Tree Height: 558
   - Class: rviz/Selection
@@ -26,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Scan-2
+    SyncSource: ""
 Toolbars:
   toolButtonStyle: 2
 Visualization Manager:
@@ -146,7 +149,7 @@ Visualization Manager:
           Axes Length: 1
           Axes Radius: 0.100000001
           Class: rviz/PoseWithCovariance
-          Color: 255; 25; 0
+          Color: 25; 255; 0
           Covariance:
             Orientation:
               Alpha: 0.5
@@ -177,7 +180,7 @@ Visualization Manager:
           Axes Length: 0.300000012
           Axes Radius: 0.00999999978
           Class: rviz/PoseArray
-          Color: 255; 25; 0
+          Color: 25; 255; 0
           Enabled: false
           Head Length: 0.0700000003
           Head Radius: 0.0299999993
@@ -226,7 +229,7 @@ Visualization Manager:
           Axes Length: 1
           Axes Radius: 0.100000001
           Class: rviz/PoseWithCovariance
-          Color: 255; 25; 0
+          Color: 0; 25; 255
           Covariance:
             Orientation:
               Alpha: 0.5
@@ -257,7 +260,7 @@ Visualization Manager:
           Axes Length: 0.300000012
           Axes Radius: 0.00999999978
           Class: rviz/PoseArray
-          Color: 255; 25; 0
+          Color: 0; 25; 255
           Enabled: false
           Head Length: 0.0700000003
           Head Radius: 0.0299999993
@@ -361,5 +364,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 56
-  Y: 35
+  X: 52
+  Y: 10

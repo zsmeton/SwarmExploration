@@ -105,6 +105,7 @@ def predict_mesh_grid(minimum, maximum, division, coord):
 
     return grid_1, grid_2
 
+
 def map_integration(particle_data, required_data, zz_1):
     minimum = min(min(particle_data[:,0]), min(particle_data[:, 1]))
     maximum = max(max(particle_data[:,0]), max(particle_data[:, 1]))
@@ -172,7 +173,7 @@ if __name__ == '__main__':
             #filename = raw_input("Filename: ")
             particle_data = np.loadtxt(filename)
             required_data = generate_random_no(particle_data)
-            trans_data = translate_data (particle_data, [0.5, 0.5, 0, 0], 1.5708)
+            trans_data = translate_data(particle_data, [0.5, 0.5, 0, 0], 1.5708)
 
         else:
             pass
