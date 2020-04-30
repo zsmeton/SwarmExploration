@@ -6,9 +6,9 @@
   <xacro:property name="cube_z_offset" value="0.2" />
   <xacro:property name="cube_length" value="0.1" />
   <xacro:property name="front_tag" value="21" />
-  <xacro:property name="right_tag" value="22" />
+  <xacro:property name="right_tag" value="24" />
   <xacro:property name="back_tag" value="23" />
-  <xacro:property name="left_tag" value="24" />
+  <xacro:property name="left_tag" value="22" />
   <xacro:property name="artag_offset" value="${cube_length/2+0.001}" />
   <link name="base_footprint"/>
 
