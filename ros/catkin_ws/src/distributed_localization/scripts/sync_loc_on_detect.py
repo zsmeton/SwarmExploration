@@ -104,26 +104,8 @@ def sync_loc_data(robot_n, robot_m):
     # get yaw from orientation quaternion
     PI = 3.1415926
 
-    quaternion_n = (
-        robot_n_loc.pose.pose.orientation.x,
-        robot_n_loc.pose.pose.orientation.y,
-        robot_n_loc.pose.pose.orientation.z,
-        robot_n_loc.pose.pose.orientation.w,
-    )
-    euler_n = tf.transformations.euler_from_quaternion(quaternion_n)
-    yaw_n_deg = (euler_n[2]/PI)*180.0
-
-    quaternion_m = (
-        robot_m_loc.pose.pose.orientation.x,
-        robot_m_loc.pose.pose.orientation.y,
-        robot_m_loc.pose.pose.orientation.z,
-        robot_m_loc.pose.pose.orientation.w,
-    )
-    euler_m = tf.transformations.euler_from_quaternion(quaternion_m)
-    yaw_m_deg = (euler_m[2]/PI)*180.0
-
-    robot_n_pose = Pose2D(robot_n_loc.pose.pose.position.x,robot_n_loc.pose.pose.position.y,yaw_n_deg)
-    robot_m_pose = Pose2D(robot_m_loc.pose.pose.position.x,robot_m_loc.pose.pose.position.y,yaw_m_deg)
+    robot_n_pose = pose_to_pose2d_degree(robot_n_loc.pose.pose)
+    robot_m_pose = pose_to_pose2d_degree(robot_m_loc.pose.pose)
 
     n_detect_m = current_relative_pose_data[robot_n][robot_m]
     if None == n_detect_m:
