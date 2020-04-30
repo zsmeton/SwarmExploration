@@ -1,13 +1,27 @@
 <launch>
   <!-- Arguments -->
-  <arg name="first_tb3"  default="tb3_0"/>
-  <arg name="second_tb3" default="tb3_1"/>
-  <arg name="third_tb3"  default="tb3_2"/>
+  <arg name="first_tb3"  default="tb3_1"/>
+  <arg name="second_tb3" default="tb3_2"/>
+  <arg name="third_tb3"  default="tb3_3"/>
+
+  <arg name="initial_cov_xx" default="8.0"/>
+  <arg name="initial_cov_yy" default="8.0"/>
+  <arg name="initial_cov_aa" default="6.0"/>
 
   <arg name="first_tb3_pose_x" default="0.0"/>
   <arg name="first_tb3_pose_y" default="0.0"/>
   <arg name="first_tb3_pose_a" default="0.0"/>
   <arg name="first_tb3_scan"   default="scan"/>
+
+  <arg name="second_tb3_pose_x" default="0.0"/>
+  <arg name="second_tb3_pose_y" default="0.0"/>
+  <arg name="second_tb3_pose_a" default="0.0"/>
+  <arg name="second_tb3_scan"   default="scan"/>
+
+  <arg name="third_tb3_pose_x" default="0.0"/>
+  <arg name="third_tb3_pose_y" default="0.0"/>
+  <arg name="third_tb3_pose_a" default="0.0"/>
+  <arg name="third_tb3_scan"   default="scan"/>
 
   <!-- AMCL -->
   <group ns = "$(arg first_tb3)">
@@ -24,6 +38,9 @@
         <param name="initial_pose_x"            value="$(arg first_tb3_pose_x)"/>
         <param name="initial_pose_y"            value="$(arg first_tb3_pose_y)"/>
         <param name="initial_pose_a"            value="$(arg first_tb3_pose_a)"/>
+        <param name="initial_cov_xx"            value="$(arg initial_cov_xx)"/>
+        <param name="initial_cov_yy"            value="$(arg initial_cov_yy)"/>
+        <param name="initial_cov_aa"            value="$(arg initial_cov_aa)"/>
         <param name="gui_publish_rate"          value="50.0"/>
         <param name="use_map_topic"             value="true"/>
 
@@ -44,8 +61,92 @@
         <param name="odom_alpha2"               value="0.1"/>
         <param name="odom_alpha3"               value="0.1"/>
         <param name="odom_alpha4"               value="0.1"/>
-        <param name="odom_frame_id"             value="/tb3_0/odom"/>
-        <param name="base_frame_id"             value="/tb3_0/base_footprint"/>
+        <param name="odom_frame_id"             value="$(arg first_tb3)/odom"/>
+        <param name="base_frame_id"             value="$(arg first_tb3)/base_footprint"/>
+    </node>
+  </group>
+
+  <group ns = "$(arg second_tb3)">
+    <node pkg="amcl" type="amcl" name="amcl">
+        <param name="min_particles"             value="500"/>
+        <param name="max_particles"             value="3000"/>
+        <param name="kld_err"                   value="0.02"/>
+        <param name="update_min_d"              value="0.20"/>
+        <param name="update_min_a"              value="0.20"/>
+        <param name="resample_interval"         value="1"/>
+        <param name="transform_tolerance"       value="0.5"/>
+        <param name="recovery_alpha_slow"       value="0.00"/>
+        <param name="recovery_alpha_fast"       value="0.00"/>
+        <param name="initial_pose_x"            value="$(arg second_tb3_pose_x)"/>
+        <param name="initial_pose_y"            value="$(arg second_tb3_pose_y)"/>
+        <param name="initial_pose_a"            value="$(arg second_tb3_pose_a)"/>
+        <param name="initial_cov_xx"            value="$(arg initial_cov_xx)"/>
+        <param name="initial_cov_yy"            value="$(arg initial_cov_yy)"/>
+        <param name="initial_cov_aa"            value="$(arg initial_cov_aa)"/>
+        <param name="gui_publish_rate"          value="50.0"/>
+        <param name="use_map_topic"             value="true"/>
+
+        <remap from="scan"                      to="$(arg second_tb3_scan)"/>
+        <param name="laser_max_range"           value="3.5"/>
+        <param name="laser_max_beams"           value="180"/>
+        <param name="laser_z_hit"               value="0.5"/>
+        <param name="laser_z_short"             value="0.05"/>
+        <param name="laser_z_max"               value="0.05"/>
+        <param name="laser_z_rand"              value="0.5"/>
+        <param name="laser_sigma_hit"           value="0.2"/>
+        <param name="laser_lambda_short"        value="0.1"/>
+        <param name="laser_likelihood_max_dist" value="2.0"/>
+        <param name="laser_model_type"          value="likelihood_field"/>
+
+        <param name="odom_model_type"           value="diff"/>
+        <param name="odom_alpha1"               value="0.1"/>
+        <param name="odom_alpha2"               value="0.1"/>
+        <param name="odom_alpha3"               value="0.1"/>
+        <param name="odom_alpha4"               value="0.1"/>
+        <param name="odom_frame_id"             value="$(arg second_tb3)/odom"/>
+        <param name="base_frame_id"             value="$(arg second_tb3)/base_footprint"/>
+    </node>
+  </group>
+
+  <group ns = "$(arg third_tb3)">
+    <node pkg="amcl" type="amcl" name="amcl">
+        <param name="min_particles"             value="500"/>
+        <param name="max_particles"             value="3000"/>
+        <param name="kld_err"                   value="0.02"/>
+        <param name="update_min_d"              value="0.20"/>
+        <param name="update_min_a"              value="0.20"/>
+        <param name="resample_interval"         value="1"/>
+        <param name="transform_tolerance"       value="0.5"/>
+        <param name="recovery_alpha_slow"       value="0.00"/>
+        <param name="recovery_alpha_fast"       value="0.00"/>
+        <param name="initial_pose_x"            value="$(arg third_tb3_pose_x)"/>
+        <param name="initial_pose_y"            value="$(arg third_tb3_pose_y)"/>
+        <param name="initial_pose_a"            value="$(arg third_tb3_pose_a)"/>
+        <param name="initial_cov_xx"            value="$(arg initial_cov_xx)"/>
+        <param name="initial_cov_yy"            value="$(arg initial_cov_yy)"/>
+        <param name="initial_cov_aa"            value="$(arg initial_cov_aa)"/>
+        <param name="gui_publish_rate"          value="50.0"/>
+        <param name="use_map_topic"             value="true"/>
+
+        <remap from="scan"                      to="$(arg third_tb3_scan)"/>
+        <param name="laser_max_range"           value="3.5"/>
+        <param name="laser_max_beams"           value="180"/>
+        <param name="laser_z_hit"               value="0.5"/>
+        <param name="laser_z_short"             value="0.05"/>
+        <param name="laser_z_max"               value="0.05"/>
+        <param name="laser_z_rand"              value="0.5"/>
+        <param name="laser_sigma_hit"           value="0.2"/>
+        <param name="laser_lambda_short"        value="0.1"/>
+        <param name="laser_likelihood_max_dist" value="2.0"/>
+        <param name="laser_model_type"          value="likelihood_field"/>
+
+        <param name="odom_model_type"           value="diff"/>
+        <param name="odom_alpha1"               value="0.1"/>
+        <param name="odom_alpha2"               value="0.1"/>
+        <param name="odom_alpha3"               value="0.1"/>
+        <param name="odom_alpha4"               value="0.1"/>
+        <param name="odom_frame_id"             value="$(arg third_tb3)/odom"/>
+        <param name="base_frame_id"             value="$(arg third_tb3)/base_footprint"/>
     </node>
   </group>
 </launch>
