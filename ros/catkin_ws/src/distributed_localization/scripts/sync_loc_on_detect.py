@@ -82,6 +82,7 @@ def sync_loc_data(robot_n, robot_m):
     robot_m_estimated_pose = Pose2D()
     robot_m_estimated_pose.x = robot_n_pose.x + math.cos(robot_n_pose.theta*PI / 180.0)*n_detect_m.x + math.sin(robot_n_pose.theta*PI / 180.0)*n_detect_m.y 
     robot_m_estimated_pose.y = robot_n_pose.y - math.sin(robot_n_pose.theta*PI / 180.0)*n_detect_m.x + math.cos(robot_n_pose.theta*PI / 180.0)*n_detect_m.y
+    robot_m_estimated_pose.theta = robot_n_pose.theta + n_detect_m.theta
 
     rospy.loginfo("Estimated global pose of robot " + str(robot_m) + ": " + str(robot_m_estimated_pose.x) + "," + str(robot_m_estimated_pose.y) + "," + str(robot_m_estimated_pose.theta))
 
