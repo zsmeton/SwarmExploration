@@ -73,7 +73,7 @@ def sub_plot_particle_data(particle_data, translate_data):
     plt.show()
 
 
-def plot_particle_data(particle_data):
+def plot_particle_data(particle_data, name=None):
     # Plot the data
     fig, ax = plt.subplots()
     # Get list of x,y directions (from yaw)
@@ -83,7 +83,8 @@ def plot_particle_data(particle_data):
     im = ax.quiver(particle_data[:,0], particle_data[:,1], arrow_x, arrow_y, particle_data[:,3])
 
     fig.colorbar(im)
-    plt.title("Particle Data")
+    if name is not None:
+        plt.title(name)
     fig.tight_layout()
     plt.show()
 
@@ -168,12 +169,13 @@ def get_user_yes_no(prompt):
 if __name__ == '__main__':
     try:
         if True:
-        #if get_user_yes_no("Would you like to load the data from a file [y/n]? "):
-            filename = "../particle_cloud.txt"
+            # Robot 1 detects robot 2, robot 2's weight gets updated
+            filename1 = "../saved_data/particle_cloud_1.txt"
+            filename2 = "../saved_data/particle_cloud_2.txt"
             #filename = raw_input("Filename: ")
-            particle_data = np.loadtxt(filename)
-            required_data = generate_random_no(particle_data)
-            trans_data = translate_data(particle_data, [0.5, 0.5, 0, 0], 1.5708)
+            particle_data = np.loadtxt(filename1)
+            required_data = np.loadtxt(filename2)
+            trans_data = translate_data(particle_data, [-0.77502, 1.999, 0, 0], 2.718875219021052)
 
         else:
             pass
@@ -183,16 +185,11 @@ if __name__ == '__main__':
             #particle_data = particles_from_particlecloud(particlecloud)
 
         # Plot the particle data
-        plot_particle_data(particle_data)
-        plot_particle_data(required_data)
-        plot_particle_data(trans_data)
+        plot_particle_data(particle_data, "Particle Data")
+        plot_particle_data(required_data, "Required Data")
+        plot_particle_data(trans_data, "Translated Data")
         # Fit and plot kde density estimation
         plot_density_estimation(trans_data, required_data)
-        
-        # Save particle data to file
-        if get_user_yes_no("Would you like to save the data [y/n]? "):
-            filename = raw_input("Filename: ")
-            np.savetxt(filename, particle_data)
 
     except rospy.ROSInterruptException:
         pass
