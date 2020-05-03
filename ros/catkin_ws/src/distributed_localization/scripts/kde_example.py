@@ -10,6 +10,7 @@ import numpy as np
 import math
 import kernel_density_estimator as kde
 import time
+from sklearn.neighbors import KernelDensity
 
 def get_particlecloud():
     """
@@ -57,16 +58,19 @@ def plot_particle_data(particle_data):
     plt.show()
 
 
+def silverman_rule(num_samples, num_features):
+    return (num_samples * (num_features + 2) / 4.)**(-1. / (num_features + 4))
+
 def plot_density_estimation(particle_data, kernel='gaussian'):
     # Fit the kernel
-    samples = particle_data[:, 0:2].T # Sample data should be of shape (features, num samples)
+    samples = particle_data[:, 0:2] # Sample data should be of shape (num samples, features)
     weights = particle_data[:, 3] # Weight data should be of shape (num samples, )
     # Normalize the weights
     weights = np.array(weights, np.float)
     weights /= np.sum(weights)
 
     start_time = time.time()
-    pdf = kde.gaussian_kde(samples, weights=weights)
+    pdf = KernelDensity(kernel='gaussian', bandwidth=silverman_rule(*particle_data[:,0:2].shape)).fit(particle_data[:, 0:2])
     end_time = time.time()
     print "KDE Fit Elapsed Time: ", end_time-start_time 
 
@@ -75,22 +79,21 @@ def plot_density_estimation(particle_data, kernel='gaussian'):
     xmax = max(max(particle_data[:, 0]), max(particle_data[:, 1]))
     x = np.linspace(xmin, xmax, 100)
     xx, yy = np.meshgrid(x, x)
+    print(np.ravel(xx.shape))
 
     start_time = time.time()
-    zz = pdf((np.ravel(xx), np.ravel(yy)))
+    zz = pdf.score_samples(np.vstack((np.ravel(xx), np.ravel(yy))).T)
     end_time = time.time()
     print "Grid Size: ", len(xx), "x", len(yy)
     print "KDE Eval Grid Elapsed Time: ", end_time-start_time 
     
     zz = np.reshape(zz, xx.shape)
-    
     # Plot the density estimation
     kwargs = dict(extent=(xmin, xmax, xmin, xmax), cmap='hot', origin='lower')
     plt.imshow(zz.T, **kwargs)
     plt.scatter(particle_data[:, 0], particle_data[:, 1], c=particle_data[:, 3])
     plt.title('kde')
     plt.show()
-
 
 def get_user_yes_no(prompt):
     response = raw_input(prompt)
@@ -103,23 +106,24 @@ def get_user_yes_no(prompt):
 if __name__ == '__main__':
     try:
         if get_user_yes_no("Would you like to load the data from a file [y/n]? "):
-            filename = raw_input("Filename: ")
-            particle_data = np.loadtxt(filename)
+            #filename = raw_input("Filename: ")
+            particle_data = np.loadtxt("../saved_data/particle_cloud_2.txt")
         else:
             # Get the particle data
             particlecloud = get_particlecloud()
             # Convert data from particlecloud to particle data numpy array
             particle_data = particles_from_particlecloud(particlecloud)
+            # Save particle data to file
+            if get_user_yes_no("Would you like to save the data [y/n]? "):
+                filename = raw_input("Filename: ")
+                np.savetxt(filename, particle_data)
 
         # Plot the particle data
         plot_particle_data(particle_data)
         # Fit and plot kde density estimation
         plot_density_estimation(particle_data)
         
-        # Save particle data to file
-        if get_user_yes_no("Would you like to save the data [y/n]? "):
-            filename = raw_input("Filename: ")
-            np.savetxt(filename, particle_data)
+        
 
     except rospy.ROSInterruptException:
         pass
