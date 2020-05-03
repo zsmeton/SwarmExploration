@@ -32,6 +32,16 @@ def generate_random_no(particle_data):
     #translate_data (required_data, [0.5, 0.5, 0, 0], 1.57)
     return required_data
 
+
+def rotate_via_numpy(xy, radians):
+    """Use numpy to build a rotation matrix and take the dot product."""
+    x, y = xy
+    c, s = np.cos(radians), np.sin(radians)
+    j = np.matrix([[c, s], [-s, c]])
+    m = np.dot(j, [x, y])
+
+    return float(m.T[0]), float(m.T[1])
+
 def translate_data(related_data, translate):
     """
     Translates the positions of related_data by translate and then rotates the yaw by angle
@@ -45,10 +55,9 @@ def translate_data(related_data, translate):
     for data in related_data:
         updated_data = data
         # Translate
-        theta = data[2]
-        c, s = np.cos(theta), np.sin(theta)
-        rot_mtx = np.array(((c, -s), (s, c)))
-        updated_data[0:2] += np.dot(rot_mtx, [translate[0], translate[1]])
+        theta = data[2] - math.pi/2
+        r = np.array(((np.cos(theta), -np.sin(theta)), (np.sin(theta), np.cos(theta))))
+        updated_data[0:2] += r.dot([translate[0], translate[1]])
         updated_data[2] += translate[2]
         translate_data.append(updated_data)
     translate_data = np.asarray(translate_data)
@@ -143,7 +152,6 @@ def plot_density_estimation(particle_data, kernel='gaussian'):
 
 def reweight_data(particle_data, required_data, kernel='gaussian'):
     # Fit the kernels
-
     start_time = time.time()
     particle_samples = particle_data[:, 0:3] # Sample data should be of shape (num samples, features)
     print "bin width", silverman_rule(*particle_samples.shape)

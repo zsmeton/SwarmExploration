@@ -43,7 +43,6 @@ current_relative_pose_data = {
 
 }
 
-
 def sync_loc_data(robot_n, robot_m):
     """
     Sync robot_n and robot_m's maps using detection data between them
