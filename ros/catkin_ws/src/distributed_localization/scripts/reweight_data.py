@@ -57,14 +57,6 @@ def sync_loc_data(robot_n, robot_m):
     Sync robot_n and robot_m's maps using detection data between them
     Note: This function should be called on new detection data 
     """
-    global current_loc_data
-    global current_relative_pose_data
-
-#    rospy.loginfo("Syncing localization data between robot " + robot_n + " and robot " + robot_m)
-
-    # use global variables for current data 
-    # TODO: SIMULATE SOME SORT OF COMMS HERE FOR "SHARING" OF DATA
-
     robot_n_loc = current_loc_data[robot_n]
     robot_m_loc = current_loc_data[robot_m]
 
