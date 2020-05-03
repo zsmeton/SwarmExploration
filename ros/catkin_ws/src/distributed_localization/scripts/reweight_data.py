@@ -83,11 +83,11 @@ def sync_loc_data(robot_n, robot_m):
     update_particlecloud(robot_n)
     update_particlecloud(robot_m)
     reweight_particlecloud(robot_n, robot_m, n_detect_m)
-    m_detect_n = n_detect_m
-    m_detect_n.x = -m_detect_n.x
-    m_detect_n.y = -m_detect_n.y
-    m_detect_n.theta += math.pi
-    reweight_particlecloud(robot_m, robot_n, m_detect_n)
+    #m_detect_n = n_detect_m
+    #m_detect_n.x = -m_detect_n.x
+    #m_detect_n.y = -m_detect_n.y
+    #m_detect_n.theta += math.pi
+    #reweight_particlecloud(robot_m, robot_n, m_detect_n)
 
 
 def reweight_particlecloud(robot_n, robot_m, detection_m):
