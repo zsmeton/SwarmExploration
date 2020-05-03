@@ -194,12 +194,12 @@ if __name__ == '__main__':
             #particle_data = particles_from_particlecloud(particlecloud)
 
         # Plot the particle data
-        #plot_particle_data(particle_data, "Particle Data")
-        #plot_particle_data(required_data, "Required Data")
-        #plot_particle_data(trans_data, "Translated Data")
+        plot_particle_data(particle_data, "Particle Data")
+        plot_particle_data(required_data, "Required Data")
+        plot_particle_data(trans_data, "Translated Data")
         # Fit and plot kde density estimation
-        #plot_density_estimation(trans_data)
-        #plot_density_estimation(required_data)
+        plot_density_estimation(trans_data)
+        plot_density_estimation(required_data)
         new_density = reweight_data(trans_data, required_data)
         plot_particle_data(new_density)
 
