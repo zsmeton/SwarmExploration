@@ -101,7 +101,7 @@ Visualization Manager:
           Axes Radius: 0.00999999978
           Class: rviz/PoseArray
           Color: 255; 25; 0
-          Enabled: false
+          Enabled: true
           Head Length: 0.0700000003
           Head Radius: 0.0299999993
           Name: Cloud-1
@@ -110,7 +110,7 @@ Visualization Manager:
           Shape: Arrow (Flat)
           Topic: /tb3_1/particlecloud
           Unreliable: false
-          Value: false
+          Value: true
         - Alpha: 1
           Autocompute Intensity Bounds: true
           Autocompute Value Bounds:
@@ -181,7 +181,7 @@ Visualization Manager:
           Axes Radius: 0.00999999978
           Class: rviz/PoseArray
           Color: 25; 255; 0
-          Enabled: false
+          Enabled: true
           Head Length: 0.0700000003
           Head Radius: 0.0299999993
           Name: Cloud-2
@@ -190,7 +190,7 @@ Visualization Manager:
           Shape: Arrow (Flat)
           Topic: /tb3_2/particlecloud
           Unreliable: false
-          Value: false
+          Value: true
         - Alpha: 1
           Autocompute Intensity Bounds: true
           Autocompute Value Bounds:
@@ -261,7 +261,7 @@ Visualization Manager:
           Axes Radius: 0.00999999978
           Class: rviz/PoseArray
           Color: 0; 25; 255
-          Enabled: false
+          Enabled: true
           Head Length: 0.0700000003
           Head Radius: 0.0299999993
           Name: Cloud-3
@@ -270,7 +270,7 @@ Visualization Manager:
           Shape: Arrow (Flat)
           Topic: /tb3_3/particlecloud
           Unreliable: false
-          Value: false
+          Value: true
         - Alpha: 1
           Autocompute Intensity Bounds: true
           Autocompute Value Bounds:
@@ -365,4 +365,4 @@ Window Geometry:
     collapsed: false
   Width: 952
   X: 0
-  Y: 524
+  Y: 499
