@@ -198,6 +198,7 @@ if __name__ == '__main__':
         # Convert data from particlecloud to particle data numpy array
         particle_data = particles_from_particlecloud(get_particlecloud('tb3_1'))
         required_data = particles_from_particlecloud(get_particlecloud('tb3_2'))
+        other_data = particles_from_particlecloud(get_particlecloud('tb3_3'))
         #trans_data = translate_data(particle_data, [-0.3232, 0.80197, 0, 0], 1.75)
 
         # Plot the particle data
@@ -206,8 +207,9 @@ if __name__ == '__main__':
         #plot_particle_data(trans_data)
         # Fit and plot kde density estimations
         #plot_density_estimation(trans_data, required_data)
-        np.savetxt("saved_data/particle_cloud_1.txt", np.array(particle_data))
-        np.savetxt("saved_data/particle_cloud_2.txt", np.array(required_data))
+        np.savetxt("saved_data/particle_cloud_1(1).txt", np.array(particle_data))
+        np.savetxt("saved_data/particle_cloud_2(1).txt", np.array(required_data))
+        np.savetxt("saved_data/particle_cloud_3(1).txt", np.array(other_data))
         
     except rospy.ROSInterruptException:
         pass

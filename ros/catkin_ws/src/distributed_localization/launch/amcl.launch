@@ -4,8 +4,8 @@
   <arg name="second_tb3" default="tb3_2"/>
   <arg name="third_tb3"  default="tb3_3"/>
 
-  <arg name="initial_cov_xx" default="8.0"/>
-  <arg name="initial_cov_yy" default="8.0"/>
+  <arg name="initial_cov_xx" default="2.0"/>
+  <arg name="initial_cov_yy" default="2.0"/>
   <arg name="initial_cov_aa" default="6.0"/>
 
   <arg name="first_tb3_scan"   default="scan"/>

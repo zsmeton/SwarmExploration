@@ -1157,6 +1157,7 @@ AmclNode::setParticlecloudCallback(amcl::SetParticlecloud::Request& req,
     pf_->w_fast += pf_->alpha_fast * (w_avg - pf_->w_fast);
 
   // Resample the particles
+  resample_count_ = resample_interval_;
   if(!(++resample_count_ % resample_interval_))
   {
     pf_update_resample(pf_);

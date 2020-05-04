@@ -28,19 +28,8 @@ def generate_random_no(particle_data):
     m3 = np.array([[i] for i in m3])
     m4 = np.array([[i] for i in m4])
     required_data = np.hstack([m1,m2,m3,m4])   
-    
-    #translate_data (required_data, [0.5, 0.5, 0, 0], 1.57)
     return required_data
 
-
-def rotate_via_numpy(xy, radians):
-    """Use numpy to build a rotation matrix and take the dot product."""
-    x, y = xy
-    c, s = np.cos(radians), np.sin(radians)
-    j = np.matrix([[c, s], [-s, c]])
-    m = np.dot(j, [x, y])
-
-    return float(m.T[0]), float(m.T[1])
 
 def translate_data(related_data, translate):
     """
@@ -63,33 +52,6 @@ def translate_data(related_data, translate):
     translate_data = np.asarray(translate_data)
 
     return translate_data
-
-    #sub_plot_particle_data(related_data, translate_data)
-    #plot_particle_data(related_data)
-    #plot_particle_data(translate_data)   
-
-
-def sub_plot_particle_data(particle_data, translate_data):
-    # Plot the data
-    fig, (ax1, ax2) = plt.subplots(2)
-    # Get list of x,y directions (from yaw)
-    arrow_x = [math.cos(yaw) for yaw in particle_data[:, 2]]
-    arrow_y = [math.sin(yaw) for yaw in particle_data[:, 2]]
-    arrow_x_1 = [math.cos(yaw) for yaw in translate_data[:, 2]]
-    arrow_y_1 = [math.sin(yaw) for yaw in translate_data[:, 2]]
-
-    im = ax1.scatter(particle_data[:, 0], particle_data[:, 1], c=particle_data[:, 3])
-    im = ax1.quiver(particle_data[:,0], particle_data[:,1], arrow_x, arrow_y, particle_data[:,3])
-    fig.colorbar(im)
-    
-    im1 = ax2.scatter(translate_data[:, 0], translate_data[:, 1], c=translate_data[:, 3])
-    im1 = ax2.quiver(translate_data[:,0], translate_data[:,1], arrow_x_1, arrow_y_1, translate_data[:,3])
-    fig.colorbar(im1)
-
-
-    plt.title("Particle Data")
-    fig.tight_layout()
-    plt.show()
 
 
 def plot_particle_data(particle_data, name=None):
@@ -187,8 +149,8 @@ if __name__ == '__main__':
     try:
         if True:
             # Robot 1 detects robot 2, robot 2's weight gets updated
-            filename1 = "../saved_data/particle_cloud_1.txt"
-            filename2 = "../saved_data/particle_cloud_2.txt"
+            filename1 = "saved_data/particle_cloud_1.txt"
+            filename2 = "saved_data/particle_cloud_2.txt"
             #filename = raw_input("Filename: ")
             particle_data = np.loadtxt(filename1) # robot 1
             required_data = np.loadtxt(filename2) # robot 2
