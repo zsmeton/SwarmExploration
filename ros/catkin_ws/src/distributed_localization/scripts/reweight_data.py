@@ -112,7 +112,7 @@ def reweight_particlecloud(robot_n, robot_m, detection_m):
         particles_n = particles_from_particlecloud(current_particlecloud_data[robot_n])
         particles_m = particles_from_particlecloud(current_particlecloud_data[robot_m])
         # Add in uniform distribution of particles to robot m
-        particles_m = add_uniform_data(particles_m, n=NUM_UNIFORM_PARTICLES, min_x=-X_DOMAIN, max_x=X_DOMAIN, min_y=-Y_DOMAIN, max_y=Y_DOMAIN, min_t=0, max_t=2*THETA_DOMAIN)
+        particles_m = add_uniform_data(particles_m, n=NUM_UNIFORM_PARTICLES, min_x=-X_DOMAIN, max_x=X_DOMAIN, min_y=-Y_DOMAIN, max_y=Y_DOMAIN, min_t=0, max_t=2*THETA_DOMAIN, origin='origin')
         # Translate robot n's particles by the detection
         translate = [detection_m.x, detection_m.y, detection_m.theta, 0]
         translated_data = translate_data(particles_n, translate)
