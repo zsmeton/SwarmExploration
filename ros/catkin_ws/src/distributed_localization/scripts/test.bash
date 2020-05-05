@@ -37,12 +37,12 @@ for (( c=1; c<=$1; c++ ));do
         REWEIGHT_PID=$!
     fi
 
-    #rosparam set "/use_sim_time" true
+    rosparam set "/use_sim_time" true
 
     # Start up logging
-    #python log_pose.py -t $c &
-    #LOG_PID=$!
-    #sleep 1
+    python log_pose.py -t $c &
+    LOG_PID=$!
+    sleep 1
 
     # Sleep for duration
     sleep $DURATION
