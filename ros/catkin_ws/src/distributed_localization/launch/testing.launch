@@ -5,5 +5,9 @@
   <include file="$(find distributed_localization)/launch/localization.launch" />
   <!-- Random Walk Launch -->
   <include file="$(find distributed_localization)/launch/random_walk.launch" />
+  <!-- Pose Logger -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find distributed_localization)/rviz/localization.rviz">
+    <param name="use_sim_time"             value="true"/>
+  </node>
 
 </launch>

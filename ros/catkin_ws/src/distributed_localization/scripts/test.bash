@@ -31,18 +31,18 @@ for (( c=1; c<=$1; c++ ));do
     roslaunch distributed_localization testing.launch &
     sleep 5
 
-    rosparam set "/use_sim_time" true
-
-    # Start up logging
-    python log_pose.py -t $c &
-    LOG_PID=$!
-    sleep 1
-
     # Start up reweight if even test
     if [ $(( $c % 2 )) -eq 0 ]; then
         python reweight_data.py &
         REWEIGHT_PID=$!
     fi
+
+    #rosparam set "/use_sim_time" true
+
+    # Start up logging
+    #python log_pose.py -t $c &
+    #LOG_PID=$!
+    #sleep 1
 
     # Sleep for duration
     sleep $DURATION
