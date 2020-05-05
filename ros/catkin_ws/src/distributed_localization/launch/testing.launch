@@ -1,0 +1,9 @@
+<launch>
+  <!-- Arguments -->
+
+  <!-- Localization Launch -->
+  <include file="$(find distributed_localization)/launch/localization.launch" />
+  <!-- Random Walk Launch -->
+  <include file="$(find distributed_localization)/launch/random_walk.launch" />
+
+</launch>

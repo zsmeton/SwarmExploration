@@ -28,7 +28,7 @@ fi
 # Run alternating amcl, amcl+distrib tests
 for (( c=1; c<=$1; c++ ));do
 	# Start up ros stuff
-    roslaunch distributed_localization localization.launch &
+    roslaunch distributed_localization testing.launch &
     sleep 5
 
     rosparam set "/use_sim_time" true

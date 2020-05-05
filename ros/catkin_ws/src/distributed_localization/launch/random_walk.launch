@@ -1,0 +1,19 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="first_tb3"  default="tb3_1"/>
+  <arg name="second_tb3" default="tb3_2"/>
+  <arg name="third_tb3"  default="tb3_3"/>
+
+  <!-- AMCL -->
+  <group ns = "$(arg first_tb3)">
+    <node pkg="turtlebot_walker" type="walker" name="walker"/>
+  </group>
+
+  <group ns = "$(arg second_tb3)">
+    <node pkg="turtlebot_walker" type="walker" name="walker"/>
+  </group>
+
+  <group ns = "$(arg third_tb3)">
+    <node pkg="turtlebot_walker" type="walker" name="walker"/>
+  </group>
+</launch>

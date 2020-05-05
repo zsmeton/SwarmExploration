@@ -75,7 +75,7 @@ def run_sync(num_bots,index, test_num):
     global actual_pose_data
     global robot_names
 
-    rospy.init_node('test', anonymous=True)
+    rospy.init_node('log_pose', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
     # set up callbacks for localization data 

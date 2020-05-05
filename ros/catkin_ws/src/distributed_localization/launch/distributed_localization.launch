@@ -1,0 +1,11 @@
+<launch>
+  <!-- Arguments -->
+
+  <!-- Localization Launch -->
+  <include file="$(find distributed_localization)/launch/Localization.launch" />
+  <!-- Distributed Synchronization -->
+  <node name="dist_loc" pkg="distributed_localization" type="reweight_data.py">
+    <param name="/use_sim_time"              value="true"/>
+  </node>
+  
+</launch>
