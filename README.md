@@ -16,6 +16,7 @@ ROS (apt):
 - ros-kinetic-move-base
 - ros-kinetic-pcl-conversions
 - ros-kinetic-pcl-ros
+- ros-kinetic-cv-bridge
   
 Other (apt):
 - libbullet-dev
