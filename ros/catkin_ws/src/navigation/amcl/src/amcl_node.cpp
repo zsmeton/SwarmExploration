@@ -1113,15 +1113,16 @@ AmclNode::setParticlecloudCallback(amcl::SetParticlecloud::Request& req,
   pf_sample_set_t* set = pf_->sets + pf_->current_set;
   pf_sample_t *sample;
   
+  unsigned int size = (set->sample_count < cloud.size()) ? set->sample_count : cloud.size();
   // Iterate over the weights to get the total weight
   double total = 0.0;
-  for(int i=0;i<set->sample_count;i++)
+  for(int i=0;i<size;i++)
   {
     total += weights.at(i);
   }
 
   // Iterate over the cloud and set the particle filter data accordingly
-  for(int i=0;i<set->sample_count;i++)
+  for(int i=0;i<size;i++)
   {
     tf::Pose pose;
     tf::poseMsgToTF(cloud.at(i), pose);
@@ -1137,7 +1138,7 @@ AmclNode::setParticlecloudCallback(amcl::SetParticlecloud::Request& req,
   // Normalize weights
   set->n_effective = 0;
   double w_avg=0.0;
-  for (int i = 0; i < set->sample_count; i++)
+  for (int i = 0; i < size; i++)
   {
     sample = set->samples + i;
     w_avg += sample->weight;
@@ -1146,7 +1147,7 @@ AmclNode::setParticlecloudCallback(amcl::SetParticlecloud::Request& req,
   }
 
   // Update running averages of likelihood of samples (Prob Rob p258)
-  w_avg /= set->sample_count;
+  w_avg /= size;
   if(pf_->w_slow == 0.0)
     pf_->w_slow = w_avg;
   else
@@ -1164,7 +1165,7 @@ AmclNode::setParticlecloudCallback(amcl::SetParticlecloud::Request& req,
     resampled = true;
   }
 
-  ROS_DEBUG("Num samples: %d\n", set->sample_count);
+  ROS_DEBUG("Num samples: %d\n", size);
 
   if(resampled)
   {
