@@ -54,7 +54,5 @@ for (( c=1; c<=$1; c++ ));do
     fi
     rosnode kill --all
 
-    if [ $c -lt $1 ]; then
-        sleep 60
-    fi
+    sleep 60
 done

@@ -16,6 +16,6 @@
 [submodule "ros/catkin_ws/src/navigation"]
 	path = ros/catkin_ws/src/navigation
 	url = https://github.com/ros-planning/navigation.git
-[submodule "ros/catkin_ws/src/ros/catkin_ws/src/turtlebot_walker"]
-	path = ros/catkin_ws/src/ros/catkin_ws/src/turtlebot_walker
+[submodule "ros/catkin_ws/src/turtlebot_walker"]
+	path = ros/catkin_ws/src/turtlebot_walker
 	url = https://github.com/zsmeton/Turtlebot-Walker.git

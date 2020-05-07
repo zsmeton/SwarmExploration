@@ -107,7 +107,7 @@ def reweight_particlecloud(robot_n, robot_m, detection_m):
     detection_m = pose2d_degree_to_pose2d_rad(detection_m)
     # Check that the robot has moved far enough for reweight
     if robot_m not in last_update_location_data or np.linalg.norm(last_update_location_data[robot_m] - position_m) > UPDATE_DISTANCE:
-        rospy.loginfo("Attempting update of particle cloud for " + robot_m + " with detection from " + robot_n)
+        rospy.loginfo("Attempting update of particle cloud for " + robot_m + " with detection from " + robot_n + " [" + str(detection_m.x) + ", " + str(detection_m.y) + ", " + str(detection_m.theta) + "]")
         # Get particle clouds for robot m and n
         particles_n = particles_from_particlecloud(current_particlecloud_data[robot_n])
         particles_m = particles_from_particlecloud(current_particlecloud_data[robot_m])
