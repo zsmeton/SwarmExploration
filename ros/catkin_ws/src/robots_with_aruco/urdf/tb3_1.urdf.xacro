@@ -2,7 +2,7 @@
 <robot name="tb3_1" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find robots_with_aruco)/urdf/common_properties.xacro"/>
   <xacro:include filename="$(find robots_with_aruco)/urdf/turtlebot3_1.gazebo.xacro"/>
-  <xacro:property name="cube_x_offset" value="-0.1" />
+  <xacro:property name="cube_x_offset" value="0" />
   <xacro:property name="cube_z_offset" value="0.2" />
   <xacro:property name="cube_length" value="0.1" />
   <xacro:property name="front_tag" value="11" />
